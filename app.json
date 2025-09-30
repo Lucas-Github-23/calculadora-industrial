@@ -22,15 +22,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.seunome.calculadoraindustrial"
+      "package": "com.lucas23.calculadoraindustrial"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "9a3e7fea-f623-4a2f-96d6-d41ec692659f"
-      }
     }
   }
 }
