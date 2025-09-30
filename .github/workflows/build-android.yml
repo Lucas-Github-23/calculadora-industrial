@@ -22,7 +22,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
+<<<<<<< HEAD
           node-version: '20.x'
+=======
+          node-version: '20.x' # Usa a família da versão 20.x
+>>>>>>> 33c54e6 (Adiciona arquivo de workflow do GitHub Actions localmente)
           cache: 'npm'
 
       # 3. Instala a ferramenta de linha de comando do EAS
@@ -33,9 +37,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+<<<<<<< HEAD
       # 5. Inicia o build do Android
       - name: Build APK
         # Usa o segredo que configuramos para fazer login e iniciar o build
         run: eas build --platform android --non-interactive
         env:
+=======
+      # 5. Inicia o build do Android de forma não-interativa
+      - name: Build APK
+        run: eas build --platform android --non-interactive
+        env:
+          # Usa o segredo que configuramos no GitHub para fazer login no Expo
+>>>>>>> 33c54e6 (Adiciona arquivo de workflow do GitHub Actions localmente)
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
