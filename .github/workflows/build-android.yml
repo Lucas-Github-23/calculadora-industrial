@@ -1,0 +1,41 @@
+# Nome do nosso fluxo de trabalho, que aparecerá no GitHub
+name: Build Android APK
+
+# Define quando este fluxo de trabalho deve ser executado
+on:
+  # Permite que você inicie o build manualmente pela aba "Actions" no GitHub
+  workflow_dispatch:
+
+# Define os "trabalhos" a serem feitos
+jobs:
+  build:
+    # O tipo de máquina virtual que o GitHub irá usar
+    runs-on: ubuntu-latest
+
+    # Os passos que a máquina virtual irá executar
+    steps:
+      # 1. Baixa o seu código do repositório para a VM
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Configura o ambiente Node.js na versão que estamos usando
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      # 3. Instala a ferramenta de linha de comando do EAS
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      # 4. Instala todas as dependências do projeto
+      - name: Install dependencies
+        run: npm install
+
+      # 5. Inicia o build do Android
+      - name: Build APK
+        # Usa o segredo que configuramos para fazer login e iniciar o build
+        run: eas build --platform android --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
